@@ -27,7 +27,7 @@ public class ReceiverService extends Service {
     public static final int PORT = 8765;
     private static final String TAG = "ADBFreeReceiver";
     private ServerSocket serverSocket;
-    private volatile boolean running;
+    public static volatile boolean running;
 
     @Override
     public void onCreate() {
