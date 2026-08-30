@@ -1,0 +1,38 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.example.adbfreereceiver'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'com.example.adbfreereceiver'
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName '1.0-android7'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
+    }
+}
+
+configurations.configureEach {
+    resolutionStrategy.eachDependency { details ->
+        if (details.requested.group == 'org.jetbrains.kotlin') {
+            details.useVersion '1.8.22'
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.core:core:1.13.1'
+
+    // Backports java.nio.file APIs used by the metadata feature to Android 7 (API 24).
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs_nio:2.0.3'
+}
